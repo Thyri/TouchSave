@@ -31,6 +31,3 @@ def register(request):
 		username = email,
 		
 	}
-	template = "index.html"
-	context = {}
-	return render(request,template, context)
