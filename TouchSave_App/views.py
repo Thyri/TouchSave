@@ -37,6 +37,38 @@ def register(request):
 	u = XUser{
 		email = email,
 		username = email,
-		
+		first_name = fname,
+		last_name = lname,
+		password=pwd1,
 	}
+	u.set_password(pwd1)
+	
+	try:
+		u.save()
+	except IntegrityError:
+		return redirect("/TouchSave/?error=%s" % "duplicateuser")
+		
+	loginAux(email, pwd1, request):
+	
+def loginAux(username, password, request):
+    u1 = authenticate(username=username, password=password)
+
+    if not u1 is None:
+        if u1.is_active:
+            login(request, u1)
+            print("Login successful for user " + username)
+            return HttpResponseRedirect(reverse('profile'))
+        else:
+            #user is not active
+            #redirect to login page with error message
+            print("Login failed for user " + username)
+            return redirect("/TouchSave/?error=%s" % "authfail")
+    else:
+        #user does not exist
+        #redirect to login page with error message
+        print("Login failed for user " + username)
+        return redirect("/TouchSave/?error=%s" % "authfail")
+
+		
+	
 
