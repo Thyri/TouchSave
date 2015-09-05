@@ -6,17 +6,8 @@ from django.contrib.auth.models import User
 class XUser(User):
     date_of_birth = models.DateField("Date of Birth")
 
-    blood_type = (
-        ('0_neg', '0-'),
-        ('0_pos', '0+'),
-        ('A_neg', 'A-'),
-        ('A_pos', 'A+'),
-        ('B_neg', 'B-'),
-        ('B_pos', 'B+'),
-        ('AB_neg', 'AB-'),
-        ('AB_pos', 'AB+'),
-    )
-
+    blood_type = models.CharField(max_length=5)
+	
     def __str__(self):
        return self.first_name + self.last_name
 
