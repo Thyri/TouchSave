@@ -48,7 +48,11 @@ def register(request):
 	except IntegrityError:
 		return redirect("/TouchSave/?error=%s" % "duplicateuser")
 		
-	loginAux(email, pwd1, request):
+	return loginAux(email, pwd1, request)
+	
+#####################################################################
+#        THE BELOW FUNCTIONS ARE HELPER FUNCTIONS NOT VIEWS         #
+#####################################################################	
 	
 def loginAux(username, password, request):
     u1 = authenticate(username=username, password=password)
