@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from ToolShare.models import *
+from TouchSave_App.models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
@@ -31,3 +31,6 @@ def register(request):
 		username = email,
 		
 	}
+	template = "index.html"
+	context = {}
+	return render(request,template, context)

@@ -59,7 +59,7 @@ ROOT_URLCONF = 'TouchSave.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/var/www/touchsafe.me/public_html/TouchSave/templates],
+        'DIRS': ['/var/www/touchsafe.me/public_html/TouchSave/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
