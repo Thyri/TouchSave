@@ -13,3 +13,8 @@ def index(request):
 	context = {}
 	return render(request,template, context)
 	#return HttpResponse("HELLO WORLD")
+
+def profile(request):
+	template = "profile.html"
+	return render(request,template,{})
+
