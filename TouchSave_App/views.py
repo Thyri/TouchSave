@@ -34,13 +34,13 @@ def register(request):
 	if pwd1 != pwd2:
 		return redirect("/TouchSave/?error=%s" % "pwdmismatch")
 	
-	u = XUser{
+	u = XUser(
 		email = email,
 		username = email,
 		first_name = fname,
 		last_name = lname,
 		password=pwd1,
-	}
+	)
 	u.set_password(pwd1)
 	
 	try:
