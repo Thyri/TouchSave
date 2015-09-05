@@ -4,7 +4,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^TouchSave/', include('ToolShare.urls')),
+    url(r'^TouchSave/', include('TouchSave_App.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^',include('ToolShare.urls'))
+    url(r'^',include('TouchSave_App.urls'))
 )
