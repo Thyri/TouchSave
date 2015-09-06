@@ -70,7 +70,7 @@ def register(request):
 		last_name = lname,
 		password=pwd1,
 		date_of_birth = '1776-07-04',
-		blood_type = 'Z',
+		blood_type = 'k',
 		
 	)
 	u.set_password(pwd1)
