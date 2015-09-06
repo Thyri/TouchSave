@@ -101,10 +101,10 @@ def edit_profile(request):
 	dob = user.date_of_birth
 	blood = user.blood_type
 	
-	if dob == '1776-07-04':
+	if dob == 'July 4, 1776':
 		dob = None
 	
-	if blood == 'Z':
+	if blood == 'k':
 		blood = None
 		
 	context = {
