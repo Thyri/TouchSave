@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.db import IntegrityError
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def index(request):
@@ -18,14 +19,15 @@ def profile(request):
 	template = "profile.html"
 	return render(request, template, {})
 	#return HttpResponse("yo")
-	
+
+@csrf_exempt
 def register(request):
-	if request.method == 'POST':
-		email = request.POST['reg_email']
-		fname = request.POST['reg_fname']
-		lname = request.POST['reg_lname']
-		pwd1 = request.POST['reg_pwd1']
-		pwd2 = request.POST['reg_pwd2']
+
+	email = request.POST['reg_email']
+	fname = request.POST['reg_fname']
+	lname = request.POST['reg_lname']
+	pwd1 = request.POST['reg_pwd1']
+	pwd2 = request.POST['reg_pwd2']
 	
 	if pwd1 != pwd2:
 		return redirect("/TouchSave/?error=%s" % "pwdmismatch")
@@ -36,6 +38,9 @@ def register(request):
 		first_name = fname,
 		last_name = lname,
 		password=pwd1,
+		date_of_birth = null,
+		blood_type = null,
+		
 	)
 	u.set_password(pwd1)
 	
@@ -62,7 +67,7 @@ def loginAux(username, password, request):
             #user is not active
             #redirect to login page with error message
             print("Login failed for user " + username)
-            return redirect("/TouchSave/?error=%s" % "authfail")
+            return redirect("/TouchSave/?error=%s/the nested else" % "authfail")
     else:
         #user does not exist
         #redirect to login page with error message
