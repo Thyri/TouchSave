@@ -107,7 +107,7 @@ def loginAux(username, password, request):
         if u1.is_active:
             login(request, u1)
             print("Login successful for user " + username)
-            return HttpResponseRedirect(reverse('profile/' + request.user.id))
+            return HttpResponseRedirect(reverse('profile/' + str(request.user.id)))
         else:
             #user is not active
             #redirect to login page with error message
