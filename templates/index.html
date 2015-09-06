@@ -5,8 +5,7 @@
 	<body>
 		<div class="home">
 			<div style="width: 100%">
-				<form id="register" action="register/" method="post" enctype="multipart/form-data">
-					{% csrf_token %}
+				<form id="register" action="register/" method="post" enctype="multipart/form-data"> {% csrf_token %}
 					<div style="float:left"; width: "60%">
 						<table>
 							<tr>
@@ -54,12 +53,11 @@
 					</form>
 				</div>
 				<div style="float:right">
-					<form id="login" action="login/" method="post" enctype="multipart/form-data">
+					<form id="login" action="login/" method="post" enctype="multipart/form-data"> {% csrf_token %}
 						<table>
 							<tr>
 								<td> <h3> login </h3> </td>
 							</tr>
-							{% csrf_token %}
 							{% if request.GET.error %}
 								{% if request.GET.error == "authfail" %}
 									<tr>
