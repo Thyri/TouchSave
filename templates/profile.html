@@ -8,33 +8,33 @@
 <BODY>
 	<form action="update/">
 		{% if user %}
-			{% if user.fname %}
-		<h2 align="center"> <b> {{ user.fname }}'s Medical Information </b> </h2>
+			{% if fname %}
+		<h2 align="center"> <b> {{ fname }}'s Medical Information </b> </h2>
 			{% endif %}
 		<hr align="center"; width="80%">
 		<table align="center"; width=80%>
 			<tr>
 				<td width="20%"> <label> First Name: </label> </td>
-				{% if user.fname %}
-				<td> <label> {{ user.fname }} </label> </td>
+				{% if fname %}
+				<td> <label> {{ fname }} </label> </td>
 				{% endif %}
 			</tr>
 			<tr>
 				<td width="20%"> <label> Last Name: </label> </td>
-				{% if user.lname %}
-				<td> <label> {{ user.lname }} </label> </td>
+				{% if lname %}
+				<td> <label> {{ lname }} </label> </td>
 				{% endif %}
 			</tr>
 			<tr>
 				<td width="20%"> <label> Date of Birth: </label> </td>
-				{% if user.dob %}
-				<td> <label> {{user.dob}} </label> </td>
+				{% if dob %}
+				<td> <label> {{ dob }} </label> </td>
 				{% endif %}
 			</tr>
 			<tr>
 				<td width="20%"> <label> Blood Type: </label> </td>
-				{% if user.blood_type %}
-				<td> <label> {{ user.blood_type }} </label> </td>
+				{% if blood_type %}
+				<td> <label> {{ blood_type }} </label> </td>
 				{% else %}
 				<td> <label> </label> </td>
 				{% endif %}
@@ -56,7 +56,7 @@
 				<td> 
 					<div style="width:60%; height: 100px; line-height: 2em; overflow: scroll; padding: 5px;">
 						{% if comments %}
-							{{ user.users_commen }}
+							{{ comments }}
 						{% endif %}
 					</div> 
 				</td>
