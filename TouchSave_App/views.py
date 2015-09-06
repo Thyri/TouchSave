@@ -38,6 +38,9 @@ def register(request):
 		first_name = fname,
 		last_name = lname,
 		password=pwd1,
+		date_of_birth = null,
+		blood_type = null,
+		
 	)
 	u.set_password(pwd1)
 	
@@ -72,7 +75,7 @@ def loginAux(username, password, request):
             #user is not active
             #redirect to login page with error message
             print("Login failed for user " + username)
-            return redirect("/TouchSave/?error=%s" % "authfail")
+            return redirect("/TouchSave/?error=%s/the nested else" % "authfail")
     else:
         #user does not exist
         #redirect to login page with error message
