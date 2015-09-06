@@ -8,7 +8,7 @@
 <BODY>
 	<form action="update/">
 		{% if user %}
-			{% user.fname %}
+			{% if user.fname %}
 		<h2 align="center"> <b> {{ user.fname }}'s Medical Information </b> </h2>
 			{% endif %}
 		<hr align="center"; width="80%">
@@ -23,6 +23,7 @@
 				<td width="20%"> <label> Last Name: </label> </td>
 				{% if user.lname %}
 				<td> <label> {{ user.lname }} </label> </td>
+				{% endif %}
 			</tr>
 			<tr>
 				<td width="20%"> <label> Date of Birth: </label> </td>
