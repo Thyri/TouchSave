@@ -45,6 +45,13 @@ def register(request):
 		
 	return loginAux(email, pwd1, request)
 	
+
+def modProfile(request):
+	name = request.POST['nname']
+	dob = request.POST['dname']
+	blood = request.POST['bname']
+	allergies = request.POST['aname']
+	
 #####################################################################
 #        THE BELOW FUNCTIONS ARE HELPER FUNCTIONS NOT VIEWS         #
 #####################################################################	
