@@ -30,17 +30,19 @@ def profile(request, user_id):
 	dob = user.date_of_birth
 	blood = user.blood_type
 	
-	if dob == 'July 4, 1776':
+	if dob == '1776-07-04':
 		dob = None
 	
 	if blood == 'k':
 		blood = None
+
+	d=None
 		
 	context = {
 		'user' : user,
 		'fname' : fname,
 		'lname' : lname,
-		'dob' : dob,
+		'dob' : d,
 		'blood_type' : blood,
 		'allergies' : allergy_list,
 		'comments' : comment,
@@ -99,7 +101,7 @@ def edit_profile(request):
 	comment = Comments.objects.filter(users_commen=user)
 	
 	date = user.date_of_birth
-	blood_t = user.blood_type.
+	blood_t = user.blood_type
 	
 	if (date == 'July 4, 1776'):
 		dob = None
