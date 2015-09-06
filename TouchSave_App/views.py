@@ -98,14 +98,18 @@ def edit_profile(request):
 	allergy_list = Allergies.objects.filter(user_with_allergy=user)
 	comment = Comments.objects.filter(users_commen=user)
 	
-	dob = user.date_of_birth
-	blood = user.blood_type
+	date = user.date_of_birth
+	blood_t = user.blood_type
 	
-	if (dob == 'July 4, 1776'):
+	if (date == 'July 4, 1776'):
 		dob = None
+	else:
+		dob = date
 	
-	if (blood == 'k'):
+	if (blood_t == 'k'):
 		blood = 'z'
+	else:
+		blood = blood_t
 		
 	context = {
 		'user' : user,
