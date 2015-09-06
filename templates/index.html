@@ -5,8 +5,8 @@
 	<body>
 		<div class="home">
 			<div style="width: 100%">
+			{% csrf_token %}
 				<form id="register" action="register/" method="post" enctype="multipart/form-data">
-					{% csrf_token %}
 					<div style="float:left"; width: "60%">
 						<table>
 							<tr>
@@ -45,7 +45,7 @@
 							</tr>
 							<tr>
 								<td> <label for="reg_pwd2"> <b> Confirm Password: </b> </label> </td>
-								<td> <input id="reg_pwd2 name="reg_pwd2" type="password"> </td>
+								<td> <input id="reg_pwd2" name="reg_pwd2" type="password"> </td>
 							</tr>
 							<tr>
 								<td> <button onclick=""> Submit </button> </td>
@@ -54,7 +54,7 @@
 					</form>
 				</div>
 				<div style="float:right">
-					<form id="login" action="login.php" method="post" enctype="multipart/form-data">
+					<form id="login" action="login/" method="post" enctype="multipart/form-data">
 						<table>
 							<tr>
 								<td> <h3> login </h3> </td>
