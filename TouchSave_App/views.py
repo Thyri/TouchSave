@@ -19,13 +19,14 @@ def index(request):
 	#return HttpResponse("HELLO WORLD")
 
 def profile(request, user_id):
+	print(1)
 	user = XUser.objects.get(id=user_id)
 	
 	fname = user.first_name
 	lname = user.last_name
 	
-	allergy_list = Allergies.objects.filter(user_with_allergy=user)
-	comment = Comments.objects.filter(users_commen=user)
+	allergy_list = user.allergies
+	comment = user.comments
 	
 	dob = user.date_of_birth
 	blood = user.blood_type
@@ -60,10 +61,13 @@ def register(request):
 	dob = request.POST['reg_dob']
 	pwd1 = request.POST['reg_pwd1']
 	pwd2 = request.POST['reg_pwd2']
+	blood_t = request.POST['reg_blood']
+	allergies = request.POST['reg_allergies']
+	comments = request.POST['reg_comment']
 
 	if pwd1 != pwd2:
 		return redirect("/TouchSave/?error=%s" % "pwdmismatch")
-	
+		
 	u = XUser(
 		email = email,
 		username = email,
@@ -71,16 +75,20 @@ def register(request):
 		last_name = lname,
 		password=pwd1,
 		date_of_birth = dob,
-		blood_type = 'k',
+		blood_type = blood_t,
+		comments = comments,
+		allergies = allergies,
 	)
 	u.set_password(pwd1)
 	
 	try:
 		u.save()
+
 	except IntegrityError:
 		return redirect("/TouchSave/?error=%s" % "duplicateuser")
 		
-	return loginAux(email, pwd1, request)
+	return  loginAux(email, pwd1, request)
+	
 
 @csrf_exempt
 def log_user(request):
@@ -91,6 +99,7 @@ def log_user(request):
 
 @csrf_exempt	
 def edit_profile(request):
+	print(2)
 	user = XUser.objects.get(pk=request.user.id)
 	
 	fname = user.first_name
@@ -123,6 +132,7 @@ def edit_profile(request):
 
 @csrf_exempt	
 def update(request):
+	print(3)
 	user = XUser.objects.get(pk=request.user.id)
 
 	fname = request.POST['fname']
@@ -133,17 +143,17 @@ def update(request):
 	known_allergies = request.POST['allergies']
 	known_allergies = known_allergies.split(',')
 	for allergy_str in known_allergies:
-		a =  Allergies{
+		a =  Allergies(
 			allergy = allergy_str,
 			user_with_allergy = user
-		}
+		)
 		a.save()
 	
 	comment = request.POST['comment']
-	c = Comments{
+	c = Comments(
 	    comment = comment,
 		users_commen = user
-	}
+	)
 	
 	c.save()
 	
@@ -190,7 +200,7 @@ def loginAux(username, password, request):
 
     u1 = authenticate(username=username, password=password)
 	
-    if not u1 is None or username!=None:
+    if not u1 is None:
         if u1.is_active:
             login(request, u1)
             print("Login successful for user " + username)
