@@ -6,13 +6,52 @@
       </TITLE>
    </HEAD>
 <BODY>
-	<form action="demo_form.asp">
-  		name: <input type="text" name="nname"><br>
-  		date of birth: <input type="text" name="dname"><br>
-		blood type: <input type="text" name="bname"><br>
-		allergies: <input type="text" name="aname><br>
-		<button type="button"><br>
-  		<input type="submit" value="update">	
+	<form action="update/">
+		{% if user %}
+		<h2 align="center"> <b> {{ user.fname }}'s Medical Information </b> </h2>
+		<hr align="center"; width="80%">
+		<table align="center"; width=80%>
+			<tr>
+				<td width="20%"> <label> First Name: </label> </td>
+				<td> <label> {{ user.fname }} </label> </td>
+			</tr>
+			<tr>
+				<td width="20%"> <label> Last Name: </label> </td>
+				<td> <label> {{ user.lname }} </label> </td>
+			</tr>
+			<tr>
+				<td width="20%"> <label> Blood Type: </label> </td>
+				{% if user.blood_type %}
+				<td> <label> {{ user.blood_type }} </label> </td>
+				{% else %}
+				<td> <label> </label> </td>
+				{% endif %}
+			</tr>
+			<tr>
+				<td width="20%"> <label> Known Allergies: </label> </td>
+				<td>
+					<ul>
+					{% if allergies %}
+						{% for allergy in user.allergies %}
+							<li> {{ allergy.allergy }} </li>
+						{% endfor %}
+					{% endif %}
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td width="20%"> <label> Addition Comment: </label> </td>
+				<td> 
+					<div style="width:60%; height: 100px; line-height: 2em; overflow: scroll; padding: 5px;">
+						{% if comments %}
+							{{ user.users_commen }}
+						{% endif %}
+					</div> 
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<button> Update Inforation </button>
 	</form>
 </BODY>
 </HTML>

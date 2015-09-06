@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 
 class XUser(User):
     date_of_birth = models.DateField("Date of Birth")
-
     blood_type = models.CharField(max_length=5)
 	
     def __str__(self):

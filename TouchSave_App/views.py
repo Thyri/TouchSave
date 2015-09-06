@@ -15,10 +15,38 @@ def index(request):
 	return render(request,template, context)
 	#return HttpResponse("HELLO WORLD")
 
-def profile(request):
+def profile(request, user_id):
+	user = XUser.objects.get(id=user_id)
+	
+	fname = user.first_name
+	lname = user.last_name
+	
+	allergy_list = Allergies.objects.filter(user_with_allergy=user)
+	comment = Comments.objects.filter(users_commen=user)
+	
+	dob = user.date_of_birth
+	blood = user.blood_type
+	
+	if dob == '1776-07-04':
+		dob = None
+	
+	if blood == 'Z':
+		blood = None
+		
+	context = {
+		'user' = user,
+		'fname' = fname,
+		'lname' = lname,
+		'dob' = dob,
+		'blood_type' = blood,
+		'allergies' = allergy_list,
+		'comments' = comment,
+	}
+	
 	template = "profile.html"
-	return render(request, template, {})
-	#return HttpResponse("yo")
+	
+	return render(request, template, context)
+	
 
 @csrf_exempt
 def register(request):
@@ -39,7 +67,7 @@ def register(request):
 		last_name = lname,
 		password=pwd1,
 		date_of_birth = '1776-07-04',
-		blood_type = 'AB+',
+		blood_type = 'Z',
 		
 	)
 	u.set_password(pwd1)
@@ -50,8 +78,13 @@ def register(request):
 		return redirect("/TouchSave/?error=%s" % "duplicateuser")
 		
 	return loginAux(email, pwd1, request)
-	
 
+@csrf_exempt
+def login(request):
+	email = request.POST['login_email']
+	pwd = request.POST['login_pwd']
+	
+	
 def modProfile(request):
 	
 	name = request.POST['nname']
@@ -65,12 +98,12 @@ def modProfile(request):
 	
 def loginAux(username, password, request):
     u1 = authenticate(username=username, password=password)
-
-    if not u1 is None:
+	
+    if not u1 is None or username!=None:
         if u1.is_active:
             login(request, u1)
             print("Login successful for user " + username)
-            return HttpResponseRedirect(reverse('profile'))
+            return HttpResponseRedirect(reverse('profile/' + request.user.id))
         else:
             #user is not active
             #redirect to login page with error message
