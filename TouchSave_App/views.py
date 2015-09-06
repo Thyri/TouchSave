@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.db import IntegrityError
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def index(request):
@@ -18,15 +19,16 @@ def profile(request):
 	template = "profile.html"
 	return render(request, template, {})
 	#return HttpResponse("yo")
-	
+
+@csrf_exempt
 def register(request):
-	if request.method == 'POST':
-		email = request.POST['reg_email']
-		fname = request.POST['reg_fname']
-		lname = request.POST['reg_lname']
-		pwd1 = request.POST['reg_pwd1']
-		pwd2 = request.POST['reg_pwd2']
-	
+
+	email = request.POST['reg_email']
+	fname = request.POST['reg_fname']
+	lname = request.POST['reg_lname']
+	pwd1 = request.POST['reg_pwd1']
+	pwd2 = request.POST['reg_pwd2']
+
 	if pwd1 != pwd2:
 		return redirect("/TouchSave/?error=%s" % "pwdmismatch")
 	
