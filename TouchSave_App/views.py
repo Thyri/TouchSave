@@ -72,7 +72,6 @@ def register(request):
 		password=pwd1,
 		date_of_birth = dob,
 		blood_type = 'k',
-				
 	)
 	u.set_password(pwd1)
 	
@@ -124,10 +123,57 @@ def edit_profile(request):
 
 @csrf_exempt	
 def update(request):
+	user = XUser.objects.get(pk=request.user.id)
 
 	fname = request.POST['fname']
 	lname = request.POST['lname']
+	dob = request.POST['dob']
+	blood_t = request.POST['blood_type']
 	
+	known_allergies = request.POST['allergies']
+	known_allergies = known_allergies.split(',')
+	for allergy_str in known_allergies:
+		a =  Allergies{
+			allergy = allergy_str,
+			user_with_allergy = user
+		}
+		a.save()
+	
+	comment = request.POST['comment']
+	c = Comments{
+	    comment = comment,
+		users_commen = user
+	}
+	
+	c.save()
+	
+	user.first_name = fname
+	user.last_name = lname
+	user.date_of_birth = dob
+	user.blood_type = blood_t
+	
+	user.save()
+	
+	allergy_list = Allergies.objects.filter(user_with_allergy=user)
+	comment = Comments.objects.filter(users_commen=user)
+	
+	if (blood_t == 'k'):
+		blood = None
+	else:
+		blood = blood_t
+	
+	template = "profile.html"
+	context = {
+		'user' : user,
+		'fname' : fname,
+		'lname' : lname,
+		'dob' : dob,
+		'blood_type' : blood_t,
+		'allergies' : allergy_list,
+		'comments' : comment,
+	}
+	
+	return render(request, template, context)
 	
 def modProfile(request):
 	
