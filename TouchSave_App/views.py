@@ -30,19 +30,19 @@ def profile(request, user_id):
 	dob = user.date_of_birth
 	blood = user.blood_type
 	
-	if dob == '1776-07-04':
+	if user.default_date:
 		dob = None
 	
 	if blood == 'k':
 		blood = None
 
-	d=None
+	#d=None
 		
 	context = {
 		'user' : user,
 		'fname' : fname,
 		'lname' : lname,
-		'dob' : d,
+		'dob' : dob,
 		'blood_type' : blood,
 		'allergies' : allergy_list,
 		'comments' : comment,
