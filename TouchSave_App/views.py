@@ -89,6 +89,37 @@ def log_user(request):
 	
 	return loginAux(email, pwd, request)
 	
+def edit_profile(request):
+	user = request.user.id
+	
+	fname = user.first_name
+	lname = user.last_name
+	
+	allergy_list = Allergies.objects.filter(user_with_allergy=user)
+	comment = Comments.objects.filter(users_commen=user)
+	
+	dob = user.date_of_birth
+	blood = user.blood_type
+	
+	if dob == '1776-07-04':
+		dob = None
+	
+	if blood == 'Z':
+		blood = None
+		
+	context = {
+		'user' : user,
+		'fname' : fname,
+		'lname' : lname,
+		'dob' : dob,
+		'blood_type' : blood,
+		'allergies' : allergy_list,
+		'comments' : comment,
+	}
+	
+	template = "edit.html"
+	
+	return render(request, template, context)
 	
 def modProfile(request):
 	
