@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^TouchSave/', include('TouchSave_App.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^',include('TouchSave_App.urls')),
-    url(r'^TouchSave/profile/$',views.profile, name='profle'),
+   # url(r'^TouchSave/profile/$',views.profile, name='profle'),
 ]
