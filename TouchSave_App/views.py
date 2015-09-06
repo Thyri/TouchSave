@@ -89,7 +89,8 @@ def log_user(request):
 	pwd = request.POST['login_pwd']
 	
 	return loginAux(email, pwd, request)
-	
+
+@csrf_exempt	
 def edit_profile(request):
 	user = XUser.objects.get(pk=request.user.id)
 	
@@ -101,14 +102,9 @@ def edit_profile(request):
 	
 	date = user.date_of_birth
 	blood_t = user.blood_type
-	
-	if (date == 'July 4, 1776'):
-		dob = None
-	else:
-		dob = date
-	
+		
 	if (blood_t == 'k'):
-		blood = 'z'
+		blood = None
 	else:
 		blood = blood_t
 		
@@ -125,6 +121,13 @@ def edit_profile(request):
 	template = "edit.html"
 	
 	return render(request, template, context)
+
+@csrf_exempt	
+def update(request):
+
+	fname = request.POST['fname']
+	lname = request.POST['lname']
+	
 	
 def modProfile(request):
 	
