@@ -83,7 +83,7 @@ def register(request):
 	return loginAux(email, pwd1, request)
 
 @csrf_exempt
-def login(request):
+def log_user(request):
 	email = request.POST['login_email']
 	pwd = request.POST['login_pwd']
 	
@@ -100,6 +100,7 @@ def modProfile(request):
 #####################################################################	
 	
 def loginAux(username, password, request):
+
     u1 = authenticate(username=username, password=password)
 	
     if not u1 is None or username!=None:
