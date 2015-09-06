@@ -192,6 +192,12 @@ def modProfile(request):
 	blood = request.POST['bname']
 	allergies = request.POST['aname']
 	
+	
+def authLogout(request):
+    logout(request)
+    print("Logout successful for user")
+    return redirect("/TouchSave/")
+	
 #####################################################################
 #        THE BELOW FUNCTIONS ARE HELPER FUNCTIONS NOT VIEWS         #
 #####################################################################	
