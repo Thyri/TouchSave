@@ -6,7 +6,7 @@
       </TITLE>
    </HEAD>
 <BODY>
-	<form action="update/">
+	<form>
 		{% if user %}
 			{% if fname %}
 		<h2 align="center"> <b> {{ fname }}'s Medical Information </b> </h2>
@@ -42,19 +42,17 @@
 			<tr>
 				<td width="20%"> <label> Known Allergies: </label> </td>
 				<td>
-					<ul>
-					{% if allergies %}
-						{% for allergy in user.allergies %}
-							<li> {{ allergy.allergy }} </li>
-						{% endfor %}
-					{% endif %}
-					</ul>
+					<div style="width:60%; height: 100px; line-hight: 2em; overflow: scroll; padding: 5px; border: 1px solid">
+						{% if allergies %}
+							{{allergies}}
+						{% endif %}
+					</div>
 				</td>
 			</tr>
 			<tr>
 				<td width="20%"> <label> Addition Comment: </label> </td>
 				<td> 
-					<div style="width:60%; height: 100px; line-height: 2em; overflow: scroll; padding: 5px;">
+					<div style="width:60%; height: 100px; line-height: 2em; overflow: scroll; padding: 5px; border: 1px solid ">
 						{% if comments %}
 							{{ comments }}
 						{% endif %}
@@ -63,7 +61,6 @@
 			</tr>
 		</table>
 		<br/>
-		<button> Update Inforation </button>
 	{%endif%}
 	</form>
 </BODY>
