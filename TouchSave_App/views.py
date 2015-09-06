@@ -7,6 +7,9 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
+from django.conf.urls import url
+
+
 
 # Create your views here.
 def index(request):
