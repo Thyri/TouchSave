@@ -37,13 +37,13 @@ def profile(request, user_id):
 		blood = None
 		
 	context = {
-		'user' = user,
-		'fname' = fname,
-		'lname' = lname,
-		'dob' = dob,
-		'blood_type' = blood,
-		'allergies' = allergy_list,
-		'comments' = comment,
+		'user' : user,
+		'fname' : fname,
+		'lname' : lname,
+		'dob' : dob,
+		'blood_type' : blood,
+		'allergies' : allergy_list,
+		'comments' : comment,
 	}
 	
 	template = "profile.html"
