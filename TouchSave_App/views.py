@@ -87,7 +87,7 @@ def log_user(request):
 	email = request.POST['login_email']
 	pwd = request.POST['login_pwd']
 	
-	loginAux(email, pwd, request)
+	return loginAux(email, pwd, request)
 	
 	
 def modProfile(request):
