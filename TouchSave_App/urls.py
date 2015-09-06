@@ -25,6 +25,5 @@ urlpatterns = [
 	url(r'^login/', views.log_user, name='login'),
 	url(r'^profile/(?P<user_id>\d+)/edit', views.edit_profile, name='edit'),
 	
-	
 ]
 
