@@ -23,6 +23,5 @@ urlpatterns = [
     url(r'^profile/', views.profile, name='profile'),
 	url(r'^register/', views.register, name='register'),
 	
-	
 ]
 

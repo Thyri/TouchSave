@@ -16,13 +16,8 @@ def index(request):
 
 def profile(request):
 	template = "profile.html"
-
-	if request.user.is_authenticated():
-		return redirect("/TouchSave/")
-	else:
-		template = "templates/index.html"
-		context = {}
-		return render(request,template, context)
+	return render(request, template, {})
+	#return HttpResponse("yo")
 	
 def register(request):
 	email = request.POST['reg_email']
