@@ -47,6 +47,7 @@ def register(request):
 	
 
 def modProfile(request):
+	
 	name = request.POST['nname']
 	dob = request.POST['dname']
 	blood = request.POST['bname']
