@@ -98,6 +98,7 @@ def modProfile(request):
 #####################################################################
 #        THE BELOW FUNCTIONS ARE HELPER FUNCTIONS NOT VIEWS         #
 #####################################################################	
+
 	
 def loginAux(username, password, request):
 
@@ -107,7 +108,7 @@ def loginAux(username, password, request):
         if u1.is_active:
             login(request, u1)
             print("Login successful for user " + username)
-            return HttpResponseRedirect(reverse('profile/' + str(request.user.id)))
+            return HttpResponseRedirect(reverse('profile',kwargs={'user_id': request.user.id}))
         else:
             #user is not active
             #redirect to login page with error message
