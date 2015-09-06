@@ -72,8 +72,7 @@ def register(request):
 		password=pwd1,
 		date_of_birth = dob,
 		blood_type = 'k',
-		default_date = True,
-		
+				
 	)
 	u.set_password(pwd1)
 	
