@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+   <HEAD>
+      <TITLE>
+         Profile 
+      </TITLE>
+   </HEAD>
+<BODY>
+	<form action="update/" method='post'>
+		{% if user %}
+			{% if fname %}
+		<h2 align="center"> <b> {{ fname }}'s Medical Information </b> </h2>
+			{% endif %}
+		<hr align="center"; width="80%">
+		<table align="center"; width=80%>
+			<tr>
+				<td width="20%"> <label> First Name: </label> </td>
+				{% if fname %}
+				<td> <input type="text" name="fname"> {{ fname }} </input> </td>
+				{% endif %}
+			</tr>
+			<tr>
+				<td width="20%"> <label> Last Name: </label> </td>
+				{% if lname %}
+				<td> <input type="text" name="lname"> {{ lname }} </input> </td>
+				{% endif %}
+			</tr>
+			<tr>
+				<td width="20%"> <label> Date of Birth: </label> </td>
+				{% if dob %}
+				<td> <input type="text" name="dob"> {{ dob }} </input> </td>
+				{% endif %}
+			</tr>
+			<tr>
+				<td width="20%"> <label> Blood Type: </label> </td>
+				{% if blood_type %}
+				<td> <input type="text" name="blood_type"> {{ blood_type }} </input> </td>
+				{% else %}
+				<td> <label> </label> </td>
+				{% endif %}
+			</tr>
+			<tr>
+				<td width="20%"> <label> Known Allergies: </label> </td>
+				<td>
+					<input type="text" size="60%" name="allergies">
+					{% if allergies %}
+						{% for allergy in user.allergies %}
+							  {{ allergy.allergy }},
+						{% endfor %}
+					{% endif %}
+					</input>
+				</td>
+			</tr>
+			<tr>
+				<td width="20%"> <label> Addition Comment: </label> </td>
+				<td> 
+					<input type="text" style="width:60%; height: 100px; line-height: 2em; overflow: scroll; padding: 5px;">
+						{% if comments %}
+							{{ comments }}
+						{% endif %}
+					</input> 
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<button> Update Inforation </button>
+	{%endif%}
+	</form>
+</BODY>
+</HTML>
