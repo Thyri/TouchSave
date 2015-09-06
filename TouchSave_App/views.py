@@ -38,8 +38,8 @@ def register(request):
 		first_name = fname,
 		last_name = lname,
 		password=pwd1,
-		date_of_birth = null,
-		blood_type = null,
+		date_of_birth = '1776-07-04',
+		blood_type = 'AB+',
 		
 	)
 	u.set_password(pwd1)
@@ -70,7 +70,7 @@ def loginAux(username, password, request):
         if u1.is_active:
             login(request, u1)
             print("Login successful for user " + username)
-            return render(request, "profile.html", {})
+            return HttpResponseRedirect(reverse('profile'))
         else:
             #user is not active
             #redirect to login page with error message
