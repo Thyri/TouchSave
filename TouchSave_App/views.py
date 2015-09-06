@@ -30,8 +30,6 @@ def profile(request, user_id):
 	dob = user.date_of_birth
 	blood = user.blood_type
 	
-	if user.default_date:
-		dob = None
 	
 	if blood == 'k':
 		blood = None
@@ -59,6 +57,7 @@ def register(request):
 	email = request.POST['reg_email']
 	fname = request.POST['reg_fname']
 	lname = request.POST['reg_lname']
+	dob = request.POST['reg_dob']
 	pwd1 = request.POST['reg_pwd1']
 	pwd2 = request.POST['reg_pwd2']
 
@@ -71,7 +70,7 @@ def register(request):
 		first_name = fname,
 		last_name = lname,
 		password=pwd1,
-		date_of_birth = '1776-07-04',
+		date_of_birth = dob,
 		blood_type = 'k',
 		
 	)

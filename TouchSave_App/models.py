@@ -6,9 +6,9 @@ from django.contrib.auth.models import User
 class XUser(User):
     date_of_birth = models.DateField("Date of Birth")
     blood_type = models.CharField(max_length=5)
-	default_date = models.BooleanField(true)
+    default_date = models.BooleanField(True)
 	
-	def change_date(Date):
+    def change_date(Date):
 		date_of_birth = Date
 		default_date = False
 	
